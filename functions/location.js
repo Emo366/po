@@ -3,15 +3,20 @@ exports.handler = async (event, context) => {
     const { latitude, longitude } = JSON.parse(event.body);
     console.log(`Местоположение: широта ${latitude}, долгота ${longitude}`);
 
-    // Возвращаем успешный ответ
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*', // Разрешить запросы с любых источников
+        'Content-Type': 'application/json',
+      },
       body: JSON.stringify({ message: 'Местоположение получено.' }),
     };
   } else {
-    // Возвращаем ошибку, если метод не поддерживается
     return {
       statusCode: 405,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
       body: JSON.stringify({ message: 'Метод не поддерживается.' }),
     };
   }
