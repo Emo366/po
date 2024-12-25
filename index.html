@@ -15,13 +15,14 @@
           const { latitude, longitude } = position.coords;
 
           // Отправляем данные на сервер
-          fetch('https://teleglink.netlify.app/', { // Замените на адрес вашего сервера
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ latitude, longitude }),
-          })
+          fetch('https://your-site-name.netlify.app/.netlify/functions/location', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({ latitude, longitude }),
+})
+
             .then(() => {
               document.body.innerHTML = '<h1>Местоположение отправлено!</h1>';
             })
