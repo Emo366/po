@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Определение местоположения</title>
+</head>
+<body>
+  <h1>Определяем ваше местоположение...</h1>
+  <script>
+    // Проверяем поддержку геолокации
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+
+          // Отправляем данные на сервер
+          fetch('https://your-server-url.com/location', { // Замените на адрес вашего сервера
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ latitude, longitude }),
+          })
+            .then(() => {
+              document.body.innerHTML = '<h1>Местоположение отправлено!</h1>';
+            })
+            .catch((err) => {
+              console.error('Ошибка отправки данных:', err);
+              document.body.innerHTML = '<h1>Ошибка отправки местоположения.</h1>';
+            });
+        },
+        (error) => {
+          alert('Не удалось получить местоположение: ' + error.message);
+        }
+      );
+    } else {
+      alert('Ваш браузер не поддерживает геолокацию.');
+    }
+  </script>
+</body>
+</html>
