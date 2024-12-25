@@ -15,7 +15,7 @@
           const { latitude, longitude } = position.coords;
 
           // Отправляем данные на сервер
-          fetch('https://teleglink.netlify.app/functions/location', {
+          fetch('https://teleglink.netlify.app/.netlify/functions/location', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
