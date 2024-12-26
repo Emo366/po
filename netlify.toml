@@ -1,0 +1,5 @@
+[build]
+  functions = "netlify/functions"  # Путь к вашим функциям
+
+[dev]
+  functions = "netlify/functions"  # Путь к функциям для локальной разработки
