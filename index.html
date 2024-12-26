@@ -1,57 +1,14 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Определение местоположения</title>
+  <title>Геолокация</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <h1>Определяем ваше местоположение...</h1>
-  <script>
-    // Проверяем поддержку геолокации
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
+  <button id="sendLocationBtn">Отправить геолокацию</button>
 
-          // Отправляем данные на сервер
-          fetch('https://teleglink.netlify.app/.netlify/functions/location', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  body: JSON.stringify({ latitude, longitude }),
-})
-
-            .then(() => {
-              document.body.innerHTML = '<h1>Местоположение отправлено!</h1>';
-            })
-            .catch((err) => {
-              console.error('Ошибка отправки данных:', err);
-              document.body.innerHTML = '<h1>Ошибка отправки местоположения.</h1>';
-            });
-        },
-        (error) => {
-          alert('Не удалось получить местоположение: ' + error.message);
-        }
-      );
-    } else {
-      alert('Ваш браузер не поддерживает геолокацию.');
-    }
-    if ("geolocation" in navigator) {
-  navigator.geolocation.getCurrentPosition(
-    (position) => {
-      console.log("Широта:", position.coords.latitude);
-      console.log("Долгота:", position.coords.longitude);
-    },
-    (error) => {
-      console.error("Ошибка получения геолокации:", error.message);
-    }
-  );
-} else {
-  console.log("Геолокация не поддерживается этим браузером.");
-}
-
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
